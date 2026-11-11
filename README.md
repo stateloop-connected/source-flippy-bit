@@ -4,7 +4,7 @@ A binary reflex game. Hexadecimal numbers fall toward a line, and you flip eight
 bits to match each one before it lands. Built with TypeScript and RxJS, with
 every game rule written as a pure function.
 
-**Play it:** https://YOUR-GITHUB-USERNAME.github.io/flippy-bit/
+**[▶ Play it in your browser](https://rgxeva.github.io/flippy-bit/)**
 
 ![Flippy Bit gameplay](docs/screenshot.png)
 
