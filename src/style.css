@@ -1,0 +1,297 @@
+:root {
+    --bg: #0b1320;
+    --panel: #122034;
+    --edge: #1f3149;
+    --ink: #ffffff;
+    --text: #c9d6e3;
+    --muted: #8fa5bb;
+    --accent: #3d8fd1;
+    --accent-soft: #7cc0f5;
+    color-scheme: dark;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    background: radial-gradient(circle at 50% 0%, #17283f 0%, var(--bg) 60%);
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 2.5em 1.25em 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+    color: var(--text);
+}
+
+/* Header */
+
+.hero {
+    text-align: center;
+    margin-bottom: 1.6em;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.4em;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+}
+
+h1::after {
+    content: "";
+    display: block;
+    width: 2.2em;
+    height: 3px;
+    margin: 0.3em auto 0;
+    border-radius: 2px;
+    background: var(--accent);
+}
+
+.tagline {
+    margin: 0.7em 0 0;
+    color: var(--muted);
+}
+
+/* Layout */
+
+.flex {
+    display: flex;
+    gap: 1.2em;
+}
+
+.col {
+    flex-direction: column;
+}
+
+main {
+    align-items: stretch;
+    padding: 1.2em;
+    border-radius: 16px;
+    background: var(--panel);
+    box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.45),
+        inset 0 0 0 1px var(--edge);
+}
+
+.stage {
+    position: relative;
+    width: 600px;
+    max-width: 100%;
+}
+
+/* The canvas keeps its 600 x 400 coordinate system and scales to fit. */
+svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    background: linear-gradient(180deg, #0d1828 0%, #0f1d31 100%);
+    box-shadow: inset 0 0 0 1px var(--edge);
+    touch-action: manipulation;
+    user-select: none;
+}
+
+#gameOver rect {
+    fill: #16263b;
+    stroke: #2b3e57;
+    stroke-width: 1.5;
+}
+
+#gameOver .caption {
+    fill: var(--ink);
+    font-size: 22px;
+    font-weight: 600;
+}
+
+/* Start screen */
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: rgba(9, 16, 28, 0.72);
+    backdrop-filter: blur(2px);
+    cursor: pointer;
+    transition:
+        opacity 0.2s ease,
+        visibility 0s linear 0.2s;
+}
+
+.overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.card {
+    max-width: 22em;
+    padding: 1.4em 1.6em;
+    border-radius: 14px;
+    text-align: center;
+    background: #16263b;
+    box-shadow: inset 0 0 0 1px var(--edge);
+}
+
+.card h2 {
+    margin: 0 0 0.4em;
+    color: var(--ink);
+    font-weight: 600;
+}
+
+.card p {
+    margin: 0 0 1.1em;
+    line-height: 1.5;
+    color: var(--text);
+}
+
+.card b {
+    color: var(--accent-soft);
+}
+
+.start {
+    display: inline-block;
+    padding: 0.55em 1.1em;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 0.95em;
+}
+
+/* Side bar */
+
+aside {
+    width: 13em;
+}
+
+.stats {
+    display: grid;
+    gap: 0.6em;
+}
+
+.stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.7em 0.9em;
+    border-radius: 10px;
+    background: #16263b;
+    box-shadow: inset 0 0 0 1px var(--edge);
+}
+
+.label {
+    color: var(--muted);
+    font-size: 0.9em;
+}
+
+.value {
+    color: var(--accent-soft);
+    font-size: 1.5em;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+#howToPlay {
+    font-size: 0.86em;
+    line-height: 1.5;
+    color: var(--muted);
+}
+
+#howToPlay h3 {
+    margin: 0.4em 0 0.5em;
+    font-size: 0.95em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text);
+}
+
+#howToPlay dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.35em 0.9em;
+    margin: 0 0 0.9em;
+}
+
+#howToPlay dt {
+    font-family: ui-monospace, Menlo, monospace;
+    font-weight: 700;
+    color: var(--ink);
+    white-space: nowrap;
+}
+
+#howToPlay dd {
+    margin: 0;
+}
+
+.hint code {
+    color: var(--ink);
+}
+
+footer {
+    margin-top: 1.6em;
+    font-size: 0.82em;
+    color: var(--muted);
+    text-align: center;
+}
+
+/* Narrow screens: stack the side bar under the canvas. */
+@media (max-width: 900px) {
+    main {
+        flex-direction: column;
+        width: 100%;
+        max-width: 640px;
+    }
+
+    .stage,
+    aside {
+        width: 100%;
+    }
+
+    .stats {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stat {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Phones: the canvas shrinks, so the start card does too. */
+@media (max-width: 520px) {
+    body {
+        padding: 1.6em 0.9em 1.4em;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    main {
+        padding: 0.8em;
+    }
+
+    .card {
+        padding: 0.8em 1em;
+        font-size: 0.82em;
+    }
+
+    .card h2 {
+        margin-bottom: 0.25em;
+        font-size: 1.25em;
+    }
+
+    .card p {
+        margin-bottom: 0.7em;
+    }
+}

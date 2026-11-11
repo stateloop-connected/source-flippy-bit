@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Flippy Bit · a binary reflex game</title>
+        <meta
+            name="description"
+            content="Flip eight bits to match each falling hexadecimal number before it lands. Built with TypeScript and RxJS."
+        />
+        <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    </head>
+    <body>
+        <header class="hero">
+            <h1>Flippy Bit</h1>
+            <p class="tagline">
+                Flip eight bits to match each falling hex number before it
+                lands.
+            </p>
+        </header>
+
+        <main id="main" class="flex">
+            <div class="stage">
+                <svg id="svgCanvas" width="600" height="400">
+                    <g id="gameOver" visibility="hidden">
+                        <rect
+                            x="190"
+                            y="160"
+                            rx="10"
+                            height="92"
+                            width="220"
+                        ></rect>
+                        <text class="caption" x="300" y="200" text-anchor="middle">
+                            Game Over
+                        </text>
+                    </g>
+                </svg>
+                <div id="startScreen" class="overlay">
+                    <div class="card">
+                        <h2>Ready?</h2>
+                        <p>
+                            Set the digit row to the value of the
+                            <b>outlined</b> number before it reaches the dashed
+                            line. It speeds up the longer you last.
+                        </p>
+                        <span class="start">Click, tap or press Space</span>
+                    </div>
+                </div>
+            </div>
+
+            <aside id="sideBar" class="flex col">
+                <div id="info" class="stats">
+                    <div class="stat">
+                        <span class="label">Score</span>
+                        <span class="value" id="scoreText">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="label">Best</span>
+                        <span class="value" id="bestText">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="label">Speed</span>
+                        <span class="value" id="speedText">×1.0</span>
+                    </div>
+                </div>
+                <div id="howToPlay">
+                    <h3>Controls</h3>
+                    <dl>
+                        <dt>1 – 8</dt>
+                        <dd>flip that digit</dd>
+                        <dt>click / tap</dt>
+                        <dd>flip a digit</dd>
+                        <dt>P</dt>
+                        <dd>pause</dd>
+                        <dt>R</dt>
+                        <dd>restart</dd>
+                    </dl>
+                    <p class="hint">
+                        <code>row XX</code> shows your digits in hex, so you can
+                        compare them with the target directly.
+                    </p>
+                </div>
+            </aside>
+        </main>
+
+        <footer>
+            TypeScript · RxJS · Vite — every game rule is a pure function,
+            covered by unit and mutation tests.
+        </footer>
+
+        <script type="module" src="./src/main.ts"></script>
+    </body>
+</html>
